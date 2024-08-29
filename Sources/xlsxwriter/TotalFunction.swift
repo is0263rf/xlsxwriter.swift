@@ -20,7 +20,7 @@ public enum TotalFunction: UInt8, ExpressibleByIntegerLiteral {
   /** Use the min function as the table total. */
   case min = 105
   /** Use the standard deviation function as the table total. */
-  case std_dev = 107
+  case stdDev = 107
   /** Use the sum function as the table total. */
   case sum = 109
 

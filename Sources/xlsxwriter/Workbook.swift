@@ -39,7 +39,7 @@ public struct Workbook {
   /// Add a new format to the Excel workbook.
   public func addFormat() -> Format { Format(workbook_add_format(lxw_workbook)) }
   /// Create a new chart to be added to a worksheet
-  public func addChart(type: Chart_type) -> Chart {
+  public func addChart(type: ChartType) -> Chart {
     Chart(workbook_add_chart(lxw_workbook, type.rawValue))
   }
   /// Get a worksheet object from its name.

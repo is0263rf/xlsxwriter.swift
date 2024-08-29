@@ -107,7 +107,7 @@ public struct Chart {
     return self
   }
   /// Set the position of the chart legend.
-  @discardableResult public func legend(position: Legend_position) -> Chart {
+  @discardableResult public func legend(position: LegendPosition) -> Chart {
     chart_legend_set_position(lxw_chart, position.rawValue)
     chart_axis_off(lxw_chart.pointee.y_axis)
     return self
@@ -178,7 +178,7 @@ public struct Series {
     return self
   }
   /// Turn on a trendline for a chart data series.
-  @discardableResult public func trendline(type: Trendline_type, value: Int = 2) -> Series {
+  @discardableResult public func trendline(type: TrendlineType, value: Int = 2) -> Series {
     chart_series_set_trendline(lxw_chart_series, type.rawValue, UInt8(value))
     return self
   }

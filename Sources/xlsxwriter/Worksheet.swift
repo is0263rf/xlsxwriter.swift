@@ -66,7 +66,7 @@ public struct Worksheet {
   @discardableResult public func write(
     _ numbers: [Double], row: Int, col: Int = 0, format: Format? = nil
   ) -> Worksheet {
-    let f = format?.lxw_format
+    let f = format?.lxwFormat
     let r = UInt32(row)
     var c = UInt16(col)
     for number in numbers {
@@ -81,7 +81,7 @@ public struct Worksheet {
   @discardableResult public func write(
     _ strings: [String], row: Int, col: Int = 0, format: Format? = nil
   ) -> Worksheet {
-    let f = format?.lxw_format
+    let f = format?.lxwFormat
     let r = UInt32(row)
     var c = UInt16(col)
     for string in strings {
@@ -99,7 +99,7 @@ public struct Worksheet {
   {
     let r = cell.row
     let c = cell.col
-    let f = format?.lxw_format
+    let f = format?.lxwFormat
     let error: lxw_error
     switch value {
     case .number(let number): error = worksheet_write_number(lxw_worksheet, r, c, number, f)
@@ -160,7 +160,7 @@ public struct Worksheet {
   {
     let first = cols.col
     let last = cols.col2
-    let f = format?.lxw_format
+    let f = format?.lxwFormat
     _ = worksheet_set_column(lxw_worksheet, first, last, width, f)
     return self
   }
@@ -169,7 +169,7 @@ public struct Worksheet {
   @discardableResult public func row(_ row: UInt32, height: Double, format: Format? = nil)
     -> Worksheet
   {
-    let f = format?.lxw_format
+    let f = format?.lxwFormat
     _ = worksheet_set_row(lxw_worksheet, row, height, f)
     return self
   }
@@ -231,7 +231,7 @@ public struct Worksheet {
     -> Worksheet
   {
     worksheet_merge_range(
-      lxw_worksheet, range.row, range.col, range.row2, range.col2, string, format?.lxw_format)
+      lxw_worksheet, range.row, range.col, range.row2, range.col2, string, format?.lxwFormat)
     return self
   }
 
@@ -254,7 +254,7 @@ public struct Worksheet {
       for i in header.indices {
         table_columns[i].header = makeCString(from: header[i])
         if format.endIndex > i {
-          table_columns[i].header_format = format[i]?.lxw_format
+          table_columns[i].header_format = format[i]?.lxwFormat
         }
         if totalRow.endIndex > i {
           table_columns[i].total_function = totalRow[i].rawValue

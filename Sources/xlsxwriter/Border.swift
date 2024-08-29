@@ -9,7 +9,7 @@ import Foundation
 
 /// Cell border styles for use with format.set_border()
 public enum Border: UInt8 {
-  case noBorder
+  case none
   case thin
   case medium
   case dashed
@@ -17,10 +17,10 @@ public enum Border: UInt8 {
   case thick
   case double
   case hair
-  case medium_dashed
-  case dash_dot
-  case medium_dash_dot
-  case dash_dot_dot
-  case medium_dash_dot_dot
-  case slant_dash_dot
+  case mediumDashed
+  case dashDot
+  case mediumDashDot
+  case dashDotDot
+  case mediumDashDotDot
+  case slantDashDot
 }

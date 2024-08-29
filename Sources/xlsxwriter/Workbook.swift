@@ -68,7 +68,7 @@ public struct Workbook {
   }
 
   /// Validate a worksheet or chartsheet name.
-  func validate(sheet_name: String) {
-    let _ = sheet_name.withCString { workbook_validate_sheet_name(lxw_workbook, $0) }
+  public func validate(sheetName: String) {
+    let _ = sheetName.withCString { workbook_validate_sheet_name(lxw_workbook, $0) }
   }
 }

@@ -108,8 +108,7 @@ public struct Format {
   }
   /// Set the text wrap to cell. This is required which cell's text contains line break to show correctly.
   @discardableResult public func setTextWrap() -> Format {
-      format_set_text_wrap(lxw_format)
-      return self
+    format_set_text_wrap(lxw_format)
+    return self
   }
 }
-

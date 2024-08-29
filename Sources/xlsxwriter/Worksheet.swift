@@ -148,7 +148,8 @@ public struct Worksheet {
     return self
   }
   /// Set the properties for a row of cells
-  @discardableResult public func row(_ row: UInt32, height: Double, format: Format? = nil) -> Worksheet
+  @discardableResult public func row(_ row: UInt32, height: Double, format: Format? = nil)
+    -> Worksheet
   {
     let f = format?.lxw_format
     _ = worksheet_set_row(lxw_worksheet, row, height, f)

@@ -1,6 +1,6 @@
 //
 //  TrendlineType.swift
-//  
+//
 //
 //  Created by Yoshinori Takada on 2024/08/29.
 //

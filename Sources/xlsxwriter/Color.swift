@@ -11,9 +11,9 @@ import libxlsxwriter
 public struct Color {
   public var hex: UInt32
   public init(hex: UInt32) {
-      self.hex = hex
+    self.hex = hex
   }
-  
+
   public static var black: Self = Self(hex: 0x1000000)
   public static var blue: Self = Self(hex: 0x0000FF)
   public static var brown: Self = Self(hex: 0x800000)

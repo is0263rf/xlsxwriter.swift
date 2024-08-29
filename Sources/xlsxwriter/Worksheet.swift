@@ -7,19 +7,19 @@ import libxlsxwriter
 
 /// Struct to represent an Excel worksheet.
 public struct Worksheet {
-  private var lxw_worksheet: UnsafeMutablePointer<lxw_worksheet>
+  private var lxwWorksheet: UnsafeMutablePointer<lxw_worksheet>
 
-  var name: String { String(cString: lxw_worksheet.pointee.name) }
+  var name: String { String(cString: lxwWorksheet.pointee.name) }
 
   init(_ lxw_worksheet: UnsafeMutablePointer<lxw_worksheet>) {
-    self.lxw_worksheet = lxw_worksheet
+    self.lxwWorksheet = lxw_worksheet
   }
 
   /// Insert a chart object into a worksheet.
   public func insert(chart: Chart, _ pos: (row: Int, col: Int)) -> Worksheet {
     let r = UInt32(pos.row)
     let c = UInt16(pos.col)
-    _ = worksheet_insert_chart(lxw_worksheet, r, c, chart.lxwChart)
+    _ = worksheet_insert_chart(lxwWorksheet, r, c, chart.lxwChart)
     return self
   }
 
@@ -32,7 +32,7 @@ public struct Worksheet {
     var o = lxw_chart_options(
       x_offset: 0, y_offset: 0, x_scale: scale.x, y_scale: scale.y, object_position: 2,
       description: nil, decorative: 0)
-    worksheet_insert_chart_opt(lxw_worksheet, r, c, chart.lxwChart, &o)
+    worksheet_insert_chart_opt(lxwWorksheet, r, c, chart.lxwChart, &o)
     return self
   }
 
@@ -70,7 +70,7 @@ public struct Worksheet {
     let r = UInt32(row)
     var c = UInt16(col)
     for number in numbers {
-      worksheet_write_number(lxw_worksheet, r, c, number, f)
+      worksheet_write_number(lxwWorksheet, r, c, number, f)
       c += 1
     }
 
@@ -85,7 +85,7 @@ public struct Worksheet {
     let r = UInt32(row)
     var c = UInt16(col)
     for string in strings {
-      let _ = string.withCString { s in worksheet_write_string(lxw_worksheet, r, c, s, f) }
+      let _ = string.withCString { s in worksheet_write_string(lxwWorksheet, r, c, s, f) }
       c += 1
     }
 
@@ -102,22 +102,22 @@ public struct Worksheet {
     let f = format?.lxwFormat
     let error: lxw_error
     switch value {
-    case .number(let number): error = worksheet_write_number(lxw_worksheet, r, c, number, f)
+    case .number(let number): error = worksheet_write_number(lxwWorksheet, r, c, number, f)
     case .string(let string):
-      error = string.withCString { s in worksheet_write_string(lxw_worksheet, r, c, s, f) }
+      error = string.withCString { s in worksheet_write_string(lxwWorksheet, r, c, s, f) }
     case .url(let url):
-      error = url.absoluteString.withCString { s in worksheet_write_url(lxw_worksheet, r, c, s, f) }
-    case .blank: error = worksheet_write_blank(lxw_worksheet, r, c, f)
+      error = url.absoluteString.withCString { s in worksheet_write_url(lxwWorksheet, r, c, s, f) }
+    case .blank: error = worksheet_write_blank(lxwWorksheet, r, c, f)
     case .comment(let comment):
-      error = comment.withCString { s in worksheet_write_comment(lxw_worksheet, r, c, s) }
+      error = comment.withCString { s in worksheet_write_comment(lxwWorksheet, r, c, s) }
     case .boolean(let boolean):
-      error = worksheet_write_boolean(lxw_worksheet, r, c, Int32(boolean ? 1 : 0), f)
+      error = worksheet_write_boolean(lxwWorksheet, r, c, Int32(boolean ? 1 : 0), f)
     case .formula(let formula):
-      error = formula.withCString { s in worksheet_write_formula(lxw_worksheet, r, c, s, f) }
+      error = formula.withCString { s in worksheet_write_formula(lxwWorksheet, r, c, s, f) }
     case .datetime(let datetime):
       error = lxw_error(rawValue: 0)
       let num = (datetime.timeIntervalSince1970 / 86400) + 25569
-      worksheet_write_number(lxw_worksheet, r, c, num, f)
+      worksheet_write_number(lxwWorksheet, r, c, num, f)
     }
     if error.rawValue != 0 { fatalError(String(cString: lxw_strerror(error))) }
 
@@ -126,31 +126,31 @@ public struct Worksheet {
 
   /// Set a worksheet tab as selected.
   @discardableResult public func select() -> Worksheet {
-    worksheet_select(lxw_worksheet)
+    worksheet_select(lxwWorksheet)
     return self
   }
 
   /// Hide the current worksheet.
   @discardableResult public func hide() -> Worksheet {
-    worksheet_hide(lxw_worksheet)
+    worksheet_hide(lxwWorksheet)
     return self
   }
 
   /// Make a worksheet the active, i.e., visible worksheet.
   @discardableResult public func activate() -> Worksheet {
-    worksheet_activate(lxw_worksheet)
+    worksheet_activate(lxwWorksheet)
     return self
   }
 
   /// Hide zero values in worksheet cells.
   @discardableResult public func hide_zero() -> Worksheet {
-    worksheet_hide_zero(lxw_worksheet)
+    worksheet_hide_zero(lxwWorksheet)
     return self
   }
 
   /// Set the paper type for printing.
   @discardableResult public func paper(type: PaperType) -> Worksheet {
-    worksheet_set_paper(lxw_worksheet, type.rawValue)
+    worksheet_set_paper(lxwWorksheet, type.rawValue)
     return self
   }
 
@@ -161,7 +161,7 @@ public struct Worksheet {
     let first = cols.col
     let last = cols.col2
     let f = format?.lxwFormat
-    _ = worksheet_set_column(lxw_worksheet, first, last, width, f)
+    _ = worksheet_set_column(lxwWorksheet, first, last, width, f)
     return self
   }
 
@@ -170,7 +170,7 @@ public struct Worksheet {
     -> Worksheet
   {
     let f = format?.lxwFormat
-    _ = worksheet_set_row(lxw_worksheet, row, height, f)
+    _ = worksheet_set_row(lxwWorksheet, row, height, f)
     return self
   }
 
@@ -180,13 +180,13 @@ public struct Worksheet {
     let cols: Cols = "A:XFD"
     let last = cols.col2
     var o = lxw_row_col_options(hidden: 1, level: 0, collapsed: 0)
-    _ = worksheet_set_column_opt(lxw_worksheet, first, last, width, nil, &o)
+    _ = worksheet_set_column_opt(lxwWorksheet, first, last, width, nil, &o)
     return self
   }
 
   /// Set the color of the worksheet tab.
   @discardableResult public func tab(color: Color) -> Worksheet {
-    worksheet_set_tab_color(lxw_worksheet, color.hex)
+    worksheet_set_tab_color(lxwWorksheet, color.hex)
     return self
   }
 
@@ -195,25 +195,25 @@ public struct Worksheet {
     -> Worksheet
   {
     let hide: UInt8 = hide_unused_rows ? 1 : 0
-    worksheet_set_default_row(lxw_worksheet, row_height, hide)
+    worksheet_set_default_row(lxwWorksheet, row_height, hide)
     return self
   }
 
   /// Set the print area for a worksheet.
   @discardableResult public func print_area(range: Range) -> Worksheet {
-    let _ = worksheet_print_area(lxw_worksheet, range.row, range.col, range.row2, range.col2)
+    let _ = worksheet_print_area(lxwWorksheet, range.row, range.col, range.row2, range.col2)
     return self
   }
 
   /// Set the autofilter area in the worksheet.
   @discardableResult public func autofilter(range: Range) -> Worksheet {
-    let _ = worksheet_autofilter(lxw_worksheet, range.row, range.col, range.row2, range.col2)
+    let _ = worksheet_autofilter(lxwWorksheet, range.row, range.col, range.row2, range.col2)
     return self
   }
 
   /// Set the option to display or hide gridlines on the screen and the printed page.
   @discardableResult public func gridline(screen: Bool, print: Bool = false) -> Worksheet {
-    worksheet_gridlines(lxw_worksheet, UInt8((print ? 2 : 0) + (screen ? 1 : 0)))
+    worksheet_gridlines(lxwWorksheet, UInt8((print ? 2 : 0) + (screen ? 1 : 0)))
     return self
   }
 
@@ -231,7 +231,7 @@ public struct Worksheet {
     -> Worksheet
   {
     worksheet_merge_range(
-      lxw_worksheet, range.row, range.col, range.row2, range.col2, string, format?.lxwFormat)
+      lxwWorksheet, range.row, range.col, range.row2, range.col2, string, format?.lxwFormat)
     return self
   }
 
@@ -266,7 +266,7 @@ public struct Worksheet {
       options.columns = buffer.baseAddress
     }
     _ = worksheet_add_table(
-      lxw_worksheet, range.row, range.col, range.row2 + (totalRow.isEmpty ? 0 : 1), range.col2,
+      lxwWorksheet, range.row, range.col, range.row2 + (totalRow.isEmpty ? 0 : 1), range.col2,
       &options)
     if let _ = name { options.name.deallocate() }
     table_columns.forEach { $0.header.deallocate() }

@@ -13,7 +13,7 @@ public struct Chartsheet {
   }
   /// Insert a chart object into a chartsheet
   @discardableResult public func set(chart: Chart) -> Chartsheet {
-    chartsheet_set_chart(lxw_chartsheet, chart.lxw_chart)
+    chartsheet_set_chart(lxw_chartsheet, chart.lxwChart)
     return self
   }
   /// Set a chartsheet tab as selected.

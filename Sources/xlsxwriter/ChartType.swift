@@ -11,25 +11,25 @@ import Foundation
 public enum ChartType: UInt8 {
   case none
   case area
-  case area_stacked
-  case area_percentage_stacked
+  case areaStacked
+  case areaPercentageStacked
   case bar
-  case bar_stacked
-  case bar_percentage_stacked
+  case barStacked
+  case barPercentageStacked
   case column
-  case column_stacked
-  case column_percentage_stacked
+  case columnStacked
+  case columnPercentageStacked
   case doughnut
   case line
-  case line_stacked
-  case line_percentage_stacked
+  case lineStacked
+  case linePercentageStacked
   case pie
   case scatter
-  case scatter_straight
-  case scatter_straight_with_markers
-  case scatter_smooth
-  case scatter_smooth_with_markers
+  case scatterStraight
+  case scatterStraightWithMarkers
+  case scatterSmooth
+  case scatterSmoothWithMarkers
   case radar
-  case radar_with_markers
-  case radar_filled
+  case radarWithMarkers
+  case radarFilled
 }

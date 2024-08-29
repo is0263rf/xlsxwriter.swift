@@ -71,4 +71,9 @@ public struct Workbook {
   public func validate(sheetName: String) {
     let _ = sheetName.withCString { workbook_validate_sheet_name(lxw_workbook, $0) }
   }
+
+  /// Add a recommendation to open the file in "read-only" mode.
+  public func readOnlyRecommended() {
+    let _ = workbook_read_only_recommended(lxw_workbook)
+  }
 }

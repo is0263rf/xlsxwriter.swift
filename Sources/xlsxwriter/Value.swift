@@ -15,7 +15,7 @@ public enum Value: ExpressibleByFloatLiteral, ExpressibleByStringLiteral {
   case string(String)
   case boolean(Bool)
   case formula(String)
-  case datetime(Date)
+  case datetime(Datetime)
   public init(floatLiteral value: Double) { self = .number(value) }
   public init(stringLiteral value: String) { self = .string(value) }
 }

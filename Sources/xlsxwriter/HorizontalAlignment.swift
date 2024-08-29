@@ -15,6 +15,6 @@ public enum HorizontalAlignment: UInt8 {
   case right
   case fill
   case justify
-  case center_across
+  case centerAcross
   case distributed
 }

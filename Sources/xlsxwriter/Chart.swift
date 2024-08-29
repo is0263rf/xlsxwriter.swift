@@ -64,8 +64,8 @@ public struct Chart {
   /// Turn off/hide axis.
   @discardableResult public func axis_off(_ axis: Axes) -> Chart {
     switch axis {
-    case .X: chart_axis_off(lxw_chart.pointee.x_axis)
-    case .Y: chart_axis_off(lxw_chart.pointee.y_axis)
+    case .x: chart_axis_off(lxw_chart.pointee.x_axis)
+    case .y: chart_axis_off(lxw_chart.pointee.y_axis)
     }
     return self
   }
@@ -73,8 +73,8 @@ public struct Chart {
   @discardableResult public func major_gridlines(_ axis: Axes, visible: Bool = true) -> Chart {
     let visible = UInt8(visible ? 1 : 0)
     switch axis {
-    case .X: chart_axis_major_gridlines_set_visible(lxw_chart.pointee.x_axis, visible)
-    case .Y: chart_axis_major_gridlines_set_visible(lxw_chart.pointee.y_axis, visible)
+    case .x: chart_axis_major_gridlines_set_visible(lxw_chart.pointee.x_axis, visible)
+    case .y: chart_axis_major_gridlines_set_visible(lxw_chart.pointee.y_axis, visible)
     }
     return self
   }
@@ -82,24 +82,24 @@ public struct Chart {
   @discardableResult public func minor_gridlines(_ axis: Axes, visible: Bool = true) -> Chart {
     let visible = UInt8(visible ? 1 : 0)
     switch axis {
-    case .X: chart_axis_minor_gridlines_set_visible(lxw_chart.pointee.x_axis, visible)
-    case .Y: chart_axis_minor_gridlines_set_visible(lxw_chart.pointee.y_axis, visible)
+    case .x: chart_axis_minor_gridlines_set_visible(lxw_chart.pointee.x_axis, visible)
+    case .y: chart_axis_minor_gridlines_set_visible(lxw_chart.pointee.y_axis, visible)
     }
     return self
   }
   /// Set the increment of the major units in the axis
   @discardableResult public func major_unit(_ axis: Axes, _ unit: Double) -> Chart {
     switch axis {
-    case .X: chart_axis_set_major_unit(lxw_chart.pointee.x_axis, unit)
-    case .Y: chart_axis_set_major_unit(lxw_chart.pointee.y_axis, unit)
+    case .x: chart_axis_set_major_unit(lxw_chart.pointee.x_axis, unit)
+    case .y: chart_axis_set_major_unit(lxw_chart.pointee.y_axis, unit)
     }
     return self
   }
   /// Set the increment of the minor units in the axis.
   @discardableResult public func minor_unit(_ axis: Axes, _ unit: Double) -> Chart {
     switch axis {
-    case .X: chart_axis_set_minor_unit(lxw_chart.pointee.x_axis, unit)
-    case .Y: chart_axis_set_minor_unit(lxw_chart.pointee.y_axis, unit)
+    case .x: chart_axis_set_minor_unit(lxw_chart.pointee.x_axis, unit)
+    case .y: chart_axis_set_minor_unit(lxw_chart.pointee.y_axis, unit)
     }
     return self
   }

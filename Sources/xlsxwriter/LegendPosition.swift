@@ -14,7 +14,7 @@ public enum LegendPosition: UInt8 {
   case top
   case bottom
   case top_right
-  case overlay_right
-  case overlay_left
-  case overlay_top_right
+  case overlayRight
+  case overlayLeft
+  case overlayTopRight
 }

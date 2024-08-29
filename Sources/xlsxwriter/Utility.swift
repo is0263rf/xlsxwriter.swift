@@ -12,4 +12,9 @@ public class Utility {
   public static func version() -> String {
     return String(cString: lxw_version())
   }
+
+  /// Retrieve the library version ID.
+  public static func versionId() -> UInt16 {
+    return lxw_version_id()
+  }
 }

@@ -8,8 +8,13 @@ import libxlsxwriter
 /// Struct to represent an Excel worksheet.
 public struct Worksheet {
   private var lxw_worksheet: UnsafeMutablePointer<lxw_worksheet>
+
   var name: String { String(cString: lxw_worksheet.pointee.name) }
-  init(_ lxw_worksheet: UnsafeMutablePointer<lxw_worksheet>) { self.lxw_worksheet = lxw_worksheet }
+
+  init(_ lxw_worksheet: UnsafeMutablePointer<lxw_worksheet>) {
+    self.lxw_worksheet = lxw_worksheet
+  }
+
   /// Insert a chart object into a worksheet.
   public func insert(chart: Chart, _ pos: (row: Int, col: Int)) -> Worksheet {
     let r = UInt32(pos.row)
@@ -17,6 +22,7 @@ public struct Worksheet {
     _ = worksheet_insert_chart(lxw_worksheet, r, c, chart.lxw_chart)
     return self
   }
+
   /// Insert a chart object into a worksheet, with options.
   public func insert(chart: Chart, _ pos: (row: Int, col: Int), scale: (x: Double, y: Double))
     -> Worksheet
@@ -29,6 +35,7 @@ public struct Worksheet {
     worksheet_insert_chart_opt(lxw_worksheet, r, c, chart.lxw_chart, &o)
     return self
   }
+
   /// Write a column of data starting from (row, col).
   @discardableResult public func write(column values: [Value], _ cell: Cell, format: Format? = nil)
     -> Worksheet
@@ -41,6 +48,7 @@ public struct Worksheet {
     }
     return self
   }
+
   /// Write a row of data starting from (row, col).
   @discardableResult public func write(row values: [Value], _ cell: Cell, format: Format? = nil)
     -> Worksheet
@@ -53,6 +61,7 @@ public struct Worksheet {
     }
     return self
   }
+
   /// Write a row of Double values starting from (row, col).
   @discardableResult public func write(
     _ numbers: [Double], row: Int, col: Int = 0, format: Format? = nil
@@ -67,6 +76,7 @@ public struct Worksheet {
 
     return self
   }
+
   /// Write a row of String values starting from (row, col).
   @discardableResult public func write(
     _ strings: [String], row: Int, col: Int = 0, format: Format? = nil
@@ -81,6 +91,7 @@ public struct Worksheet {
 
     return self
   }
+
   /// Write data to a worksheet cell by calling the appropriate
   /// worksheet_write_*() method based on the type of data being passed.
   @discardableResult public func write(_ value: Value, _ cell: Cell, format: Format? = nil)
@@ -112,31 +123,37 @@ public struct Worksheet {
 
     return self
   }
+
   /// Set a worksheet tab as selected.
   @discardableResult public func select() -> Worksheet {
     worksheet_select(lxw_worksheet)
     return self
   }
+
   /// Hide the current worksheet.
   @discardableResult public func hide() -> Worksheet {
     worksheet_hide(lxw_worksheet)
     return self
   }
+
   /// Make a worksheet the active, i.e., visible worksheet.
   @discardableResult public func activate() -> Worksheet {
     worksheet_activate(lxw_worksheet)
     return self
   }
+
   /// Hide zero values in worksheet cells.
   @discardableResult public func hide_zero() -> Worksheet {
     worksheet_hide_zero(lxw_worksheet)
     return self
   }
+
   /// Set the paper type for printing.
   @discardableResult public func paper(type: PaperType) -> Worksheet {
     worksheet_set_paper(lxw_worksheet, type.rawValue)
     return self
   }
+
   /// Set the properties for one or more columns of cells.
   @discardableResult public func column(_ cols: Cols, width: Double, format: Format? = nil)
     -> Worksheet
@@ -147,6 +164,7 @@ public struct Worksheet {
     _ = worksheet_set_column(lxw_worksheet, first, last, width, f)
     return self
   }
+
   /// Set the properties for a row of cells
   @discardableResult public func row(_ row: UInt32, height: Double, format: Format? = nil)
     -> Worksheet
@@ -155,6 +173,7 @@ public struct Worksheet {
     _ = worksheet_set_row(lxw_worksheet, row, height, f)
     return self
   }
+
   /// Set the properties for one or more columns of cells.
   @discardableResult public func hide_columns(_ col: Int, width: Double = 8.43) -> Worksheet {
     let first = UInt16(col)
@@ -164,11 +183,13 @@ public struct Worksheet {
     _ = worksheet_set_column_opt(lxw_worksheet, first, last, width, nil, &o)
     return self
   }
+
   /// Set the color of the worksheet tab.
   @discardableResult public func tab(color: Color) -> Worksheet {
     worksheet_set_tab_color(lxw_worksheet, color.hex)
     return self
   }
+
   /// Set the default row properties.
   @discardableResult public func set_default(row_height: Double, hide_unused_rows: Bool = true)
     -> Worksheet
@@ -177,16 +198,19 @@ public struct Worksheet {
     worksheet_set_default_row(lxw_worksheet, row_height, hide)
     return self
   }
+
   /// Set the print area for a worksheet.
   @discardableResult public func print_area(range: Range) -> Worksheet {
     let _ = worksheet_print_area(lxw_worksheet, range.row, range.col, range.row2, range.col2)
     return self
   }
+
   /// Set the autofilter area in the worksheet.
   @discardableResult public func autofilter(range: Range) -> Worksheet {
     let _ = worksheet_autofilter(lxw_worksheet, range.row, range.col, range.row2, range.col2)
     return self
   }
+
   /// Set the option to display or hide gridlines on the screen and the printed page.
   @discardableResult public func gridline(screen: Bool, print: Bool = false) -> Worksheet {
     worksheet_gridlines(lxw_worksheet, UInt8((print ? 2 : 0) + (screen ? 1 : 0)))

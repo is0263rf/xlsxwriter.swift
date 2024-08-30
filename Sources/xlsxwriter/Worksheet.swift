@@ -132,6 +132,30 @@ public struct Worksheet {
     return self
   }
 
+  @discardableResult public func writeArrayFormula(
+    _ formula: String, _ first: Cell, _ last: Cell, format: Format? = nil
+  ) -> Worksheet {
+    worksheet_write_array_formula(
+      lxwWorksheet, first.row, first.col, last.row, last.col, formula, format?.lxwFormat)
+
+    return self
+  }
+
+  @discardableResult public func writeArrayFormula(
+    _ value: String, range: String, format: Format? = nil
+  ) -> Worksheet {
+    let firstRow = lxw_name_to_row(range)
+    let firstCol = lxw_name_to_col(range)
+    let lastRow = lxw_name_to_row_2(range)
+    let lastCol = lxw_name_to_col_2(range)
+    let formula = value.cString(using: .utf8)
+
+    worksheet_write_array_formula(
+      lxwWorksheet, firstRow, firstCol, lastRow, lastCol, range, format?.lxwFormat)
+
+    return self
+  }
+
   /// Set a worksheet tab as selected.
   @discardableResult public func select() -> Worksheet {
     worksheet_select(lxwWorksheet)

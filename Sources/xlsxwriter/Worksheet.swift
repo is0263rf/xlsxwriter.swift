@@ -16,23 +16,19 @@ public struct Worksheet {
   }
 
   /// Insert a chart object into a worksheet.
-  public func insert(chart: Chart, _ pos: (row: Int, col: Int)) -> Worksheet {
-    let r = UInt32(pos.row)
-    let c = UInt16(pos.col)
-    _ = worksheet_insert_chart(lxwWorksheet, r, c, chart.lxwChart)
+  public func insert(chart: Chart, _ pos: (row: UInt32, col: UInt16)) -> Worksheet {
+    _ = worksheet_insert_chart(lxwWorksheet, pos.row, pos.col, chart.lxwChart)
     return self
   }
 
   /// Insert a chart object into a worksheet, with options.
-  public func insert(chart: Chart, _ pos: (row: Int, col: Int), scale: (x: Double, y: Double))
+  public func insert(chart: Chart, _ pos: (row: UInt32, col: UInt16), scale: (x: Double, y: Double))
     -> Worksheet
   {
-    let r = UInt32(pos.row)
-    let c = UInt16(pos.col)
     var o = lxw_chart_options(
       x_offset: 0, y_offset: 0, x_scale: scale.x, y_scale: scale.y, object_position: 2,
       description: nil, decorative: 0)
-    worksheet_insert_chart_opt(lxwWorksheet, r, c, chart.lxwChart, &o)
+    worksheet_insert_chart_opt(lxwWorksheet, pos.row, pos.col, chart.lxwChart, &o)
     return self
   }
 

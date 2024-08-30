@@ -4,16 +4,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "array-formula",
-    dependencies: [
-        .package(name: "xlsxwriter", path: "../..")
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .executableTarget(
-            name: "array-formula",
-            dependencies: ["xlsxwriter"]
-        ),
-    ]
+  name: "array-formula",
+  dependencies: [
+    .package(name: "xlsxwriter", path: "../..")
+  ],
+  targets: [
+    // Targets are the basic building blocks of a package, defining a module or a test suite.
+    // Targets can depend on other targets in this package and products from dependencies.
+    .executableTarget(
+      name: "array-formula",
+      dependencies: ["xlsxwriter"]
+    )
+  ]
 )

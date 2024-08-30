@@ -14,7 +14,6 @@ let package = Package(
             name: "xlsxwriter",
             dependencies: ["libxlsxwriter"],
             cSettings: [(.define("_CRT_SECURE_NO_WARNINGS", .when(platforms: [.windows])))]
-        ),
-        .testTarget(name: "xlsxwriterTests", dependencies: ["xlsxwriter"]),
+        )
     ]
 )

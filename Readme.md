@@ -16,15 +16,7 @@ The Swift Package Manager is a convenient tool for managing Swift code distribut
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/damuellen/xlsxwriter.swift", branch: "main")
-]
-```
-
-or, if you want to use the SPM branch:
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/damuellen/xlsxwriter.swift", branch: "SPM")
+    .package(url: "https://github.com/is0263rf/xlsxwriter.swift", branch: "develop")
 ]
 ```
 
@@ -63,10 +55,10 @@ let format = wb.addFormat()
 format.bold()
 
 // Write some simple text.
-ws.write(.string("Hello"), [0, 0])
+ws.write(string: "Hello", .init(row: 0, col: 0))
 
 // Text with formatting.
-ws.write(.string("World"), [0, 1], format: format)
+ws.write(string: "World", .init(row: 0, col: 1), format: format)
 ```
 
 ## About Libxlsxwriter

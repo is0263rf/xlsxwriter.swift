@@ -103,7 +103,7 @@ public struct Worksheet {
   /// Set the properties for one or more columns of cells.
   public func hideColumns(_ col: Int, width: Double = 8.43) {
     let first = UInt16(col)
-    let cols: Cols = "A:XFD"
+    let cols: Cols = .init("A:XFD")
     let last = cols.col2
     var o = lxw_row_col_options(hidden: 1, level: 0, collapsed: 0)
     _ = worksheet_set_column_opt(lxwWorksheet, first, last, width, nil, &o)

@@ -11,7 +11,7 @@ public struct Cols {
   let col: UInt16
   let col2: UInt16
 
-  public init(cols: String) {
+  public init(_ cols: String) {
     (self.col, self.col2) = cols.withCString { (lxw_name_to_col($0), lxw_name_to_col_2($0)) }
   }
 

@@ -61,14 +61,12 @@ public struct Format {
     return self
   }
   /// Set the number format for a cell.
-  @discardableResult public func set(num_format: String) -> Format {
-    num_format.withCString { format_set_num_format(lxwFormat, $0) }
-    return self
+  public func set(numFormat: String) {
+    numFormat.withCString { format_set_num_format(lxwFormat, $0) }
   }
   /// Set the Excel built-in number format for a cell.
-  @discardableResult public func set(num_format index: Int) -> Format {
-    format_set_num_format_index(lxwFormat, UInt8(index))
-    return self
+  public func set(numFormat index: UInt8) {
+    format_set_num_format_index(lxwFormat, index)
   }
   /// Turn on the text "shrink to fit" for a cell.
   @discardableResult public func shrink() -> Format {

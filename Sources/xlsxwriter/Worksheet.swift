@@ -65,6 +65,13 @@ public struct Worksheet {
       lxwWorksheet, range.row, range.col, range.row2, range.col2, arrayFormula, format?.lxwFormat)
   }
 
+  public func write(datetime: Datetime, _ cell: Cell, format: Format? = nil) {
+    var d = lxw_datetime(
+      year: datetime.year, month: datetime.month, day: datetime.day, hour: datetime.hour,
+      min: datetime.min, sec: datetime.sec)
+    let _ = worksheet_write_datetime(lxwWorksheet, cell.row, cell.col, &d, format?.lxwFormat)
+  }
+
   /// Set a worksheet tab as selected.
   public func select() {
     worksheet_select(lxwWorksheet)

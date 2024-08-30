@@ -11,27 +11,57 @@ public struct Datetime {
   private var lxwDatetime: lxw_datetime
 
   public var year: Int32 {
-    return lxwDatetime.year
+    get {
+      return lxwDatetime.year
+    }
+    set(y) {
+      lxwDatetime.year = y
+    }
   }
 
   public var month: Int32 {
-    return lxwDatetime.month
+    get {
+      return lxwDatetime.month
+    }
+    set(m) {
+      lxwDatetime.month = m
+    }
   }
 
   public var day: Int32 {
-    return lxwDatetime.day
+    get {
+      return lxwDatetime.day
+    }
+    set(d) {
+      lxwDatetime.day = d
+    }
   }
 
   public var hour: Int32 {
-    return lxwDatetime.hour
+    get {
+      return lxwDatetime.hour
+    }
+    set(h) {
+      lxwDatetime.hour = h
+    }
   }
 
   public var min: Int32 {
-    return lxwDatetime.min
+    get {
+      return lxwDatetime.min
+    }
+    set(m) {
+      lxwDatetime.min = m
+    }
   }
 
   public var sec: Double {
-    return lxwDatetime.sec
+    get {
+      return lxwDatetime.sec
+    }
+    set(s) {
+      lxwDatetime.sec = s
+    }
   }
 
   public init(

@@ -98,4 +98,8 @@ public struct Format {
     format_set_underline(lxwFormat, underline.rawValue)
     return self
   }
+
+  public func align(_ align: Align) {
+    format_set_align(lxwFormat, align.rawValue)
+  }
 }

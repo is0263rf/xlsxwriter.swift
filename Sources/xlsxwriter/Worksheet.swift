@@ -124,6 +124,8 @@ public struct Worksheet {
         year: datetime.year, month: datetime.month, day: datetime.day, hour: datetime.hour,
         min: datetime.min, sec: datetime.sec)
       error = worksheet_write_datetime(lxwWorksheet, r, c, &d, f)
+    case .unixtime(let unixtime):
+      error = worksheet_write_unixtime(lxwWorksheet, r, c, unixtime, f)
     }
     if error.rawValue != 0 { fatalError(String(cString: lxw_strerror(error))) }
 

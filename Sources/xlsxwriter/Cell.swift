@@ -17,7 +17,8 @@ public struct Cell: ExpressibleByStringLiteral, ExpressibleByArrayLiteral {
     self.row = UInt32(elements[0])
     self.col = UInt16(elements[1])
   }
-  init(_ row: UInt32, _ col: UInt16) {
+
+  public init(_ row: UInt32, _ col: UInt16) {
     self.row = row
     self.col = col
   }

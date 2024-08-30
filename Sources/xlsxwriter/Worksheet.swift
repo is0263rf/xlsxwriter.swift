@@ -36,6 +36,11 @@ public struct Worksheet {
     return self
   }
 
+  public func insert(image: String, _ cell: Cell) {
+    let fileName = image.cString(using: .utf8)
+    worksheet_insert_image(lxwWorksheet, cell.row, cell.col, fileName)
+  }
+
   /// Write a column of data starting from (row, col).
   @discardableResult public func write(column values: [Value], _ cell: Cell, format: Format? = nil)
     -> Worksheet
@@ -115,8 +120,10 @@ public struct Worksheet {
     case .formula(let formula):
       error = formula.withCString { s in worksheet_write_formula(lxwWorksheet, r, c, s, f) }
     case .datetime(let datetime):
-        var d :lxw_datetime = .init(year: datetime.year, month: datetime.month, day: datetime.day, hour: datetime.hour, min: datetime.min, sec: datetime.sec)
-         error = worksheet_write_datetime(lxwWorksheet, r, c, &d, f)
+      var d: lxw_datetime = .init(
+        year: datetime.year, month: datetime.month, day: datetime.day, hour: datetime.hour,
+        min: datetime.min, sec: datetime.sec)
+      error = worksheet_write_datetime(lxwWorksheet, r, c, &d, f)
     }
     if error.rawValue != 0 { fatalError(String(cString: lxw_strerror(error))) }
 

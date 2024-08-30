@@ -4,12 +4,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "tutorial1",
-    dependencies: [.package(name: "xlsxwriter", path: "../..")],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .executableTarget(
-            name: "tutorial1", dependencies: ["xlsxwriter"]),
-    ]
+  name: "tutorial1",
+  dependencies: [
+    .package(name: "xlsxwriter", path: "../..")
+  ],
+  targets: [
+    // Targets are the basic building blocks of a package, defining a module or a test suite.
+    // Targets can depend on other targets in this package and products from dependencies.
+    .executableTarget(
+      name: "tutorial1",
+      dependencies: ["xlsxwriter"]
+    )
+  ]
 )

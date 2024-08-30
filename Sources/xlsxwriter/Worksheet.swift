@@ -51,6 +51,10 @@ public struct Worksheet {
     let _ = worksheet_write_comment(lxwWorksheet, cell.row, cell.col, comment)
   }
 
+  public func write(formula: String, _ cell: Cell, format: Format? = nil) {
+    let _ = worksheet_write_formula(lxwWorksheet, cell.row, cell.col, formula, format?.lxwFormat)
+  }
+
   public func write(arrayFormula: String, first: Cell, last: Cell, format: Format? = nil) {
     let _ = worksheet_write_array_formula(
       lxwWorksheet, first.row, first.col, last.row, last.col, arrayFormula, format?.lxwFormat)

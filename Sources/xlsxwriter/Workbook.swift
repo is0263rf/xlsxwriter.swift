@@ -76,4 +76,9 @@ public struct Workbook {
   public func readOnlyRecommended() {
     let _ = workbook_read_only_recommended(lxwWorkbook)
   }
+
+  public func defaultUrlFormat() -> Format {
+    let f = workbook_get_default_url_format(lxwWorkbook)!
+    return .init(f)
+  }
 }

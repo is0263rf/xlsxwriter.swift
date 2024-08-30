@@ -111,4 +111,9 @@ public struct Format {
     format_set_text_wrap(lxwFormat)
     return self
   }
+
+  @discardableResult public func underline(_ underline: Underline) -> Format {
+    format_set_underline(lxwFormat, underline.rawValue)
+    return self
+  }
 }

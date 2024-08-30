@@ -44,7 +44,7 @@ public struct Worksheet {
     var r = cell.row
     let c = cell.col
     for value in values {
-      write(value, .init(r, c), format: format)
+      write(value, .init(row: r, col: c), format: format)
       r += 1
     }
     return self
@@ -57,7 +57,7 @@ public struct Worksheet {
     let r = cell.row
     var c = cell.col
     for value in values {
-      write(value, .init(r, c), format: format)
+      write(value, .init(row: r, col: c), format: format)
       c += 1
     }
     return self

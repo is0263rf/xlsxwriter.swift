@@ -44,22 +44,6 @@ public struct Format {
     format_set_right(lxwFormat, style.rawValue)
     return self
   }
-  /// Set the horizontal alignment for data in the cell.
-  @discardableResult public func align(horizontal: HorizontalAlignment) -> Format {
-    format_set_align(lxwFormat, horizontal.rawValue)
-    return self
-  }
-  /// Set the vertical alignment for data in the cell.
-  @discardableResult public func align(vertical: VerticalAlignment) -> Format {
-    format_set_align(lxwFormat, vertical.rawValue)
-    return self
-  }
-  /// Set the vertical alignment and horizontal alignment to center.
-  @discardableResult public func center() -> Format {
-    format_set_align(lxwFormat, HorizontalAlignment.center.rawValue)
-    format_set_align(lxwFormat, VerticalAlignment.center.rawValue)
-    return self
-  }
   /// Set the number format for a cell.
   public func set(numFormat: String) {
     numFormat.withCString { format_set_num_format(lxwFormat, $0) }

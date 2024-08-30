@@ -76,6 +76,17 @@ public struct Worksheet {
     let _ = worksheet_write_unixtime(lxwWorksheet, cell.row, cell.col, unixtime, format?.lxwFormat)
   }
 
+  public func write(dynamicFormula: String, _ cell: Cell, format: Format? = nil) {
+    let _ = worksheet_write_dynamic_formula(
+      lxwWorksheet, cell.row, cell.col, dynamicFormula, format?.lxwFormat)
+  }
+
+  public func write(dynamicArrayFormula: String, _ range: Range, format: Format? = nil) {
+    let _ = worksheet_write_dynamic_array_formula(
+      lxwWorksheet, range.row, range.col, range.row2, range.col2, dynamicArrayFormula,
+      format?.lxwFormat)
+  }
+
   /// Set a worksheet tab as selected.
   public func select() {
     worksheet_select(lxwWorksheet)
@@ -107,6 +118,10 @@ public struct Worksheet {
     let last = cols.col2
     let f = format?.lxwFormat
     let _ = worksheet_set_column(lxwWorksheet, first, last, width, f)
+  }
+
+  public func column(_ cols: Cols, pixels: UInt32, format: Format? = nil) {
+    let _ = worksheet_set_column_pixels(lxwWorksheet, cols.col, cols.col, pixels, format?.lxwFormat)
   }
 
   /// Set the properties for a row of cells

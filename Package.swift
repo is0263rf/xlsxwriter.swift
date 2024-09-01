@@ -2,18 +2,19 @@
 import PackageDescription
 
 let package = Package(
-    name: "xlsxwriter.swift",
-    products: [
-        .library(name: "xlsxwriter", targets: ["xlsxwriter"]),
-    ],
-    dependencies: [
-        .package(url: "https://github.com/jmcnamara/libxlsxwriter", .branchItem("main")),
-    ],
-    targets: [
-        .target(
-            name: "xlsxwriter",
-            dependencies: ["libxlsxwriter"],
-            cSettings: [(.define("_CRT_SECURE_NO_WARNINGS", .when(platforms: [.windows])))]
-        )
-    ]
+  name: "xlsxwriter.swift",
+  products: [
+    .library(name: "xlsxwriter", targets: ["xlsxwriter"])
+  ],
+  dependencies: [
+    .package(url: "https://github.com/jmcnamara/libxlsxwriter", .branchItem("main")),
+    .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0")
+  ],
+  targets: [
+    .target(
+      name: "xlsxwriter",
+      dependencies: ["libxlsxwriter"],
+      cSettings: [(.define("_CRT_SECURE_NO_WARNINGS", .when(platforms: [.windows])))]
+    )
+  ]
 )

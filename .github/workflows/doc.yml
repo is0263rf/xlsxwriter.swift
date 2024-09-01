@@ -12,7 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Generate documentation
-      run: swift package --allow-writing-to-directory ./docs generate-documentation --disable-indexing --output-path ./docs --transform-for-static-hosting --hosting-base-path xlsxwriter.swift
+      run: |
+          swift package --allow-writing-to-directory ./docs \
+          generate-documentation \
+          --disable-indexing \
+          --output-path ./docs \
+          --transform-for-static-hosting \
+          --hosting-base-path xlsxwriter.swift
     - uses: actions/upload-pages-artifact@v3
       with:
         path: docs

@@ -5,10 +5,10 @@
 //  Created by Yoshinori Takada on 2024/08/29.
 //
 
-import Foundation
+import libxlsxwriter
 
 /// Available chart types.
-public enum ChartType: UInt8 {
+public enum ChartType {
   /// None.
   case none
 
@@ -19,7 +19,7 @@ public enum ChartType: UInt8 {
   case areaStacked
 
   /// Area chart - percentage stacked.
-  case areaPercentageStacked
+  case areaStackedPercent
 
   /// Bar chart.
   case bar
@@ -28,7 +28,7 @@ public enum ChartType: UInt8 {
   case barStacked
 
   /// Bar chart - percentage stacked.
-  case barPercentageStacked
+  case barStackedPercent
 
   /// Column chart.
   case column
@@ -49,7 +49,7 @@ public enum ChartType: UInt8 {
   case lineStacked
 
   /// Line chart - percentage stacked.
-  case linePercentageStacked
+  case lineStackedPercent
 
   /// Pie chart.
   case pie
@@ -77,4 +77,55 @@ public enum ChartType: UInt8 {
 
   /// Radar chart - filled.
   case radarFilled
+
+  public var rawValue: lxw_chart_type {
+    switch self {
+    case .none:
+      return LXW_CHART_NONE
+    case .area:
+      return LXW_CHART_AREA
+    case .areaStacked:
+      return LXW_CHART_AREA_STACKED
+    case .areaStackedPercent:
+      return LXW_CHART_AREA_STACKED_PERCENT
+    case .bar:
+      return LXW_CHART_BAR
+    case .barStacked:
+      return LXW_CHART_BAR_STACKED
+    case .barStackedPercent:
+      return LXW_CHART_BAR_STACKED_PERCENT
+    case .column:
+      return LXW_CHART_COLUMN
+    case .columnStacked:
+      return LXW_CHART_COLUMN_STACKED
+    case .columnStackedPercent:
+      return LXW_CHART_COLUMN_STACKED_PERCENT
+    case .doughnut:
+      return LXW_CHART_DOUGHNUT
+    case .line:
+      return LXW_CHART_LINE
+    case .lineStacked:
+      return LXW_CHART_LINE_STACKED
+    case .lineStackedPercent:
+      return LXW_CHART_LINE_STACKED_PERCENT
+    case .pie:
+      return LXW_CHART_PIE
+    case .scatter:
+      return LXW_CHART_SCATTER
+    case .scatterStraight:
+      return LXW_CHART_SCATTER_STRAIGHT
+    case .scatterStraightWithMarkers:
+      return LXW_CHART_SCATTER_STRAIGHT_WITH_MARKERS
+    case .scatterSmooth:
+      return LXW_CHART_SCATTER_SMOOTH
+    case .scatterSmoothWithMarkers:
+      return LXW_CHART_SCATTER_SMOOTH_WITH_MARKERS
+    case .radar:
+      return LXW_CHART_RADAR
+    case .radarWithMarkers:
+      return LXW_CHART_RADAR_WITH_MARKERS
+    case .radarFilled:
+      return LXW_CHART_RADAR_FILLED
+    }
+  }
 }

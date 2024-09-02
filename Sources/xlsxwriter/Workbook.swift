@@ -49,7 +49,7 @@ public struct Workbook {
 
   /// Create a new chart to be added to a worksheet
   public func addChart(type: ChartType) -> Chart {
-    Chart(workbook_add_chart(lxwWorkbook, type.rawValue))
+    Chart(workbook_add_chart(lxwWorkbook, UInt8(type.rawValue.rawValue)))
   }
 
   /// Get a worksheet object from its name.

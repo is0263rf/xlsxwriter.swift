@@ -57,7 +57,7 @@ public struct Series {
   }
   /// Turn on a trendline for a chart data series.
   @discardableResult public func trendline(type: TrendlineType, value: Int = 2) -> Series {
-    chart_series_set_trendline(lxwChartSeries, type.rawValue, UInt8(value))
+    chart_series_set_trendline(lxwChartSeries, UInt8(type.rawValue.rawValue), UInt8(value))
     return self
   }
   /// Set the trendline name for a chart data series.

@@ -96,7 +96,7 @@ public struct Format {
 
   /// Turn on underline for the format:
   @discardableResult public func underline(_ underline: Underline) -> Format {
-    format_set_underline(lxwFormat, underline.rawValue)
+    format_set_underline(lxwFormat, UInt8(underline.rawValue.rawValue))
     return self
   }
 

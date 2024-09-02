@@ -32,26 +32,26 @@ public struct Chart {
   }
 
   /// Set the minimum and maximum value for the axis range.
-  @discardableResult public func set(x_axis: ClosedRange<Double>) -> Chart {
+  @discardableResult public func set(xAxis: ClosedRange<Double>) -> Chart {
     chart_axis_set_min(lxwChart.pointee.x_axis, x_axis.lowerBound)
     chart_axis_set_max(lxwChart.pointee.x_axis, x_axis.upperBound)
     return self
   }
 
   /// Set the minimum and maximum value for the axis range.
-  @discardableResult public func set(y_axis: ClosedRange<Double>) -> Chart {
+  @discardableResult public func set(yAxis: ClosedRange<Double>) -> Chart {
     chart_axis_set_min(lxwChart.pointee.y_axis, y_axis.lowerBound)
     chart_axis_set_max(lxwChart.pointee.y_axis, y_axis.upperBound)
     return self
   }
 
   /// Set the name caption of the x axis.
-  @discardableResult public func set(x_axis name: String) -> Chart {
+  @discardableResult public func set(xAxis name: String) -> Chart {
     name.withCString { chart_axis_set_name(lxwChart.pointee.x_axis, $0) }
     return self
   }
   /// Set the name caption of the y axis.
-  @discardableResult public func set(y_axis name: String) -> Chart {
+  @discardableResult public func set(yAxis name: String) -> Chart {
     name.withCString { chart_axis_set_name(lxwChart.pointee.y_axis, $0) }
     return self
   }
@@ -62,7 +62,7 @@ public struct Chart {
     return self
   }
   /// Turn off/hide axis.
-  @discardableResult public func axis_off(_ axis: Axes) -> Chart {
+  @discardableResult public func axisOff(_ axis: Axes) -> Chart {
     switch axis {
     case .x: chart_axis_off(lxwChart.pointee.x_axis)
     case .y: chart_axis_off(lxwChart.pointee.y_axis)
@@ -70,7 +70,7 @@ public struct Chart {
     return self
   }
   /// Turn on/off the major gridlines for an axis.
-  @discardableResult public func major_gridlines(_ axis: Axes, visible: Bool = true) -> Chart {
+  @discardableResult public func majorGridlines(_ axis: Axes, visible: Bool = true) -> Chart {
     let visible = UInt8(visible ? 1 : 0)
     switch axis {
     case .x: chart_axis_major_gridlines_set_visible(lxwChart.pointee.x_axis, visible)
@@ -79,7 +79,7 @@ public struct Chart {
     return self
   }
   /// Turn on/off the minor gridlines for an axis.
-  @discardableResult public func minor_gridlines(_ axis: Axes, visible: Bool = true) -> Chart {
+  @discardableResult public func minorGridlines(_ axis: Axes, visible: Bool = true) -> Chart {
     let visible = UInt8(visible ? 1 : 0)
     switch axis {
     case .x: chart_axis_minor_gridlines_set_visible(lxwChart.pointee.x_axis, visible)
@@ -88,7 +88,7 @@ public struct Chart {
     return self
   }
   /// Set the increment of the major units in the axis
-  @discardableResult public func major_unit(_ axis: Axes, _ unit: Double) -> Chart {
+  @discardableResult public func majorUnit(_ axis: Axes, _ unit: Double) -> Chart {
     switch axis {
     case .x: chart_axis_set_major_unit(lxwChart.pointee.x_axis, unit)
     case .y: chart_axis_set_major_unit(lxwChart.pointee.y_axis, unit)
@@ -96,7 +96,7 @@ public struct Chart {
     return self
   }
   /// Set the increment of the minor units in the axis.
-  @discardableResult public func minor_unit(_ axis: Axes, _ unit: Double) -> Chart {
+  @discardableResult public func minorUnit(_ axis: Axes, _ unit: Double) -> Chart {
     switch axis {
     case .x: chart_axis_set_minor_unit(lxwChart.pointee.x_axis, unit)
     case .y: chart_axis_set_minor_unit(lxwChart.pointee.y_axis, unit)
@@ -104,7 +104,7 @@ public struct Chart {
     return self
   }
   /// Turn off an automatic chart title.
-  @discardableResult public func title_off() -> Chart {
+  @discardableResult public func titleOff() -> Chart {
     chart_title_off(lxwChart)
     return self
   }

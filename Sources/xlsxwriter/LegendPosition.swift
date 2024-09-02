@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Chart legend positions.
 public enum LegendPosition: UInt8 {
   /// No chart legend.
   case none = 0

@@ -8,6 +8,6 @@ let worksheet = workbook.addWorksheet()
 worksheet.write(
   dynamicFormula: "=_xlfn.LAMBDA(_xlpm.temp, (5/9) * (_xlpm.temp-32))(32)", .init("A1"))
 
-workbook.define(name: "ToCelsius", "=_xlfn.LAMBDA(_xlpm.temp, (5/9) * (_xlpm.temp-32))")
+workbook.define(name: "ToCelsius", formula: "=_xlfn.LAMBDA(_xlpm.temp, (5/9) * (_xlpm.temp-32))")
 
 worksheet.write(dynamicFormula: "=ToCelsius(212)", .init("A2"))

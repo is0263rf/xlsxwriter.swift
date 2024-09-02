@@ -103,7 +103,7 @@ public struct Worksheet {
   }
 
   /// Hide zero values in worksheet cells.
-  public func hide_zero() {
+  public func hideZero() {
     worksheet_hide_zero(lxwWorksheet)
   }
 

@@ -21,27 +21,27 @@ public struct Format {
   }
   /// Set the cell border style.
   @discardableResult public func border(style: Border) -> Format {
-    format_set_border(lxwFormat, style.rawValue)
+    format_set_border(lxwFormat, UInt8(style.rawValue.rawValue))
     return self
   }
   /// Set the cell top border style.
   @discardableResult public func top(style: Border) -> Format {
-    format_set_top(lxwFormat, style.rawValue)
+    format_set_top(lxwFormat, UInt8(style.rawValue.rawValue))
     return self
   }
   /// Set the cell bottom border style.
   @discardableResult public func bottom(style: Border) -> Format {
-    format_set_bottom(lxwFormat, style.rawValue)
+    format_set_bottom(lxwFormat, UInt8(style.rawValue.rawValue))
     return self
   }
   /// Set the cell left border style.
   @discardableResult public func left(style: Border) -> Format {
-    format_set_left(lxwFormat, style.rawValue)
+    format_set_left(lxwFormat, UInt8(style.rawValue.rawValue))
     return self
   }
   /// Set the cell right border style.
   @discardableResult public func right(style: Border) -> Format {
-    format_set_right(lxwFormat, style.rawValue)
+    format_set_right(lxwFormat, UInt8(style.rawValue.rawValue))
     return self
   }
   /// Set the number format for a cell.

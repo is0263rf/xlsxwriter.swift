@@ -82,4 +82,9 @@ public struct Workbook {
     let f = workbook_get_default_url_format(lxwWorkbook)!
     return .init(f)
   }
+
+  /// Create a defined name in the workbook to use as a variable.
+  public func define(name: String, formula: String) {
+    let _ = workbook_define_name(lxwWorkbook, name, formula)
+  }
 }

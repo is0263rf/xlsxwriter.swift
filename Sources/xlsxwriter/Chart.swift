@@ -33,15 +33,15 @@ public struct Chart {
 
   /// Set the minimum and maximum value for the axis range.
   @discardableResult public func set(xAxis: ClosedRange<Double>) -> Chart {
-    chart_axis_set_min(lxwChart.pointee.x_axis, x_axis.lowerBound)
-    chart_axis_set_max(lxwChart.pointee.x_axis, x_axis.upperBound)
+    chart_axis_set_min(lxwChart.pointee.x_axis, xAxis.lowerBound)
+    chart_axis_set_max(lxwChart.pointee.x_axis, xAxis.upperBound)
     return self
   }
 
   /// Set the minimum and maximum value for the axis range.
   @discardableResult public func set(yAxis: ClosedRange<Double>) -> Chart {
-    chart_axis_set_min(lxwChart.pointee.y_axis, y_axis.lowerBound)
-    chart_axis_set_max(lxwChart.pointee.y_axis, y_axis.upperBound)
+    chart_axis_set_min(lxwChart.pointee.y_axis, yAxis.lowerBound)
+    chart_axis_set_max(lxwChart.pointee.y_axis, yAxis.upperBound)
     return self
   }
 

@@ -94,11 +94,13 @@ public struct Format {
     return self
   }
 
+  /// Turn on underline for the format:
   @discardableResult public func underline(_ underline: Underline) -> Format {
     format_set_underline(lxwFormat, underline.rawValue)
     return self
   }
 
+  /// Set the alignment for data in the cell.
   public func align(_ align: Align) {
     format_set_align(lxwFormat, align.rawValue)
   }

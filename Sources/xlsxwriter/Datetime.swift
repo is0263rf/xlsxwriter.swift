@@ -7,9 +7,11 @@
 
 import libxlsxwriter
 
+/// Struct to represent a date and time in Excel.
 public struct Datetime {
-  private var lxwDatetime: lxw_datetime
+  var lxwDatetime: lxw_datetime
 
+  /// Year : 1900 - 9999
   public var year: Int32 {
     get {
       return lxwDatetime.year
@@ -19,6 +21,7 @@ public struct Datetime {
     }
   }
 
+  /// Month : 1 - 12
   public var month: Int32 {
     get {
       return lxwDatetime.month
@@ -28,6 +31,7 @@ public struct Datetime {
     }
   }
 
+  /// Day : 1 - 31
   public var day: Int32 {
     get {
       return lxwDatetime.day
@@ -37,6 +41,7 @@ public struct Datetime {
     }
   }
 
+  /// Hour : 0 - 23
   public var hour: Int32 {
     get {
       return lxwDatetime.hour
@@ -46,6 +51,7 @@ public struct Datetime {
     }
   }
 
+  /// Minute : 0 - 59
   public var min: Int32 {
     get {
       return lxwDatetime.min
@@ -55,6 +61,7 @@ public struct Datetime {
     }
   }
 
+  /// Seconds : 0 - 59.999
   public var sec: Double {
     get {
       return lxwDatetime.sec

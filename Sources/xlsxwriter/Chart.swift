@@ -62,7 +62,7 @@ public struct Chart {
     return self
   }
   /// Turn off/hide axis.
-  @discardableResult public func axisOff(_ axis: Axes) -> Chart {
+  @discardableResult public func axisOff(_ axis: Axis) -> Chart {
     switch axis {
     case .x: chart_axis_off(lxwChart.pointee.x_axis)
     case .y: chart_axis_off(lxwChart.pointee.y_axis)
@@ -70,7 +70,7 @@ public struct Chart {
     return self
   }
   /// Turn on/off the major gridlines for an axis.
-  @discardableResult public func majorGridlines(_ axis: Axes, visible: Bool = true) -> Chart {
+  @discardableResult public func majorGridlines(_ axis: Axis, visible: Bool = true) -> Chart {
     let visible = UInt8(visible ? 1 : 0)
     switch axis {
     case .x: chart_axis_major_gridlines_set_visible(lxwChart.pointee.x_axis, visible)
@@ -79,7 +79,7 @@ public struct Chart {
     return self
   }
   /// Turn on/off the minor gridlines for an axis.
-  @discardableResult public func minorGridlines(_ axis: Axes, visible: Bool = true) -> Chart {
+  @discardableResult public func minorGridlines(_ axis: Axis, visible: Bool = true) -> Chart {
     let visible = UInt8(visible ? 1 : 0)
     switch axis {
     case .x: chart_axis_minor_gridlines_set_visible(lxwChart.pointee.x_axis, visible)
@@ -88,7 +88,7 @@ public struct Chart {
     return self
   }
   /// Set the increment of the major units in the axis
-  @discardableResult public func majorUnit(_ axis: Axes, _ unit: Double) -> Chart {
+  @discardableResult public func majorUnit(_ axis: Axis, _ unit: Double) -> Chart {
     switch axis {
     case .x: chart_axis_set_major_unit(lxwChart.pointee.x_axis, unit)
     case .y: chart_axis_set_major_unit(lxwChart.pointee.y_axis, unit)
@@ -96,7 +96,7 @@ public struct Chart {
     return self
   }
   /// Set the increment of the minor units in the axis.
-  @discardableResult public func minorUnit(_ axis: Axes, _ unit: Double) -> Chart {
+  @discardableResult public func minorUnit(_ axis: Axis, _ unit: Double) -> Chart {
     switch axis {
     case .x: chart_axis_set_minor_unit(lxwChart.pointee.x_axis, unit)
     case .y: chart_axis_set_minor_unit(lxwChart.pointee.y_axis, unit)

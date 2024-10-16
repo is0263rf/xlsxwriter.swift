@@ -7,6 +7,7 @@
 
 import libxlsxwriter
 
+/// A struct to represent a range from one cell to another in an Excel worksheet.
 public struct Range: ExpressibleByStringLiteral, ExpressibleByArrayLiteral {
   let row: UInt32
   let col: UInt16

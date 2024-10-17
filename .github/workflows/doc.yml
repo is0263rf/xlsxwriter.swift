@@ -18,6 +18,7 @@ jobs:
           --disable-indexing \
           --output-path ./docs \
           --transform-for-static-hosting \
+          --target xlsxwriter \
           --hosting-base-path xlsxwriter.swift
     - uses: actions/upload-pages-artifact@v3
       with:

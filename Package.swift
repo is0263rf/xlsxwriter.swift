@@ -8,7 +8,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/jmcnamara/libxlsxwriter", .branchItem("main")),
-    .package(url: "https://github.com/apple/swift-docc-plugin", .exactItem("1.4.2")),
+    .package(url: "https://github.com/apple/swift-docc-plugin", .upToNextMajor(from: "1.0.0")),
   ],
   targets: [
     .target(

@@ -7,9 +7,9 @@
 
 /// Superscript and subscript values
 public enum FormatScripts {
-  /// Superscript font
-  case superscript
+    /// Superscript font
+    case superscript
 
-  /// Subscript font
-  case `subscript`
+    /// Subscript font
+    case `subscript`
 }

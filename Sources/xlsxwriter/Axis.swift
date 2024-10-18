@@ -7,6 +7,6 @@
 
 /// Represent the X axis or Y axis.
 public enum Axis {
-  case x
-  case y
+    case x
+    case y
 }

@@ -1,5 +1,5 @@
 //
-//  WorkseetName.swift
+//  WorksheetName.swift
 //  xlsxwriter.swift
 //
 //  Created by Yoshinori Takada on 2024/10/18.
@@ -10,7 +10,7 @@ import Testing
 
 @testable import xlsxwriter
 
-@Suite struct WorkseetName {
+@Suite struct WorksheetName {
     let fileName = "worksheet-name-test.xlsx"
 
     init() {
@@ -21,7 +21,7 @@ import Testing
         workbook.close()
     }
 
-    @Test func testWorkhseetName() throws {
+    @Test func testWorksheetName() throws {
         let file = try #require(XLSXFile(filepath: fileName))
         let workbook = try #require(file.parseWorkbooks().first)
         let worksheetNames = try file.parseWorksheetPathsAndNames(workbook: workbook).compactMap {
